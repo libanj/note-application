@@ -14,8 +14,8 @@
 		</a>
 		{% endfor %}
 	</div>
-	<a href="#" class="p-0">
-		<input type="button" value="Create Note" class="btn btn-primary" onclick="location.href(`http://localhost/notes/display`);">
+	<a href="{{ path('post') }}" class="p-0">
+		<input type="button" value="Create Note" class="btn btn-primary">
 	</a>
 </div>
 {% endblock %}

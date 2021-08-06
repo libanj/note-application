@@ -9,3 +9,7 @@ get:
 post:
   path: /create
   controller: App\Controller\NotesController::create
+
+save:
+  path: /save
+  controller: App\Controller\NotesController::saveNote
