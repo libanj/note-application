@@ -19,9 +19,9 @@ class NotesController extends AbstractController
 
 	public function display(): Response
 	{
-		$data = [['title' => 'First Title', 'body' => 'Lorem Ipsum One']];
+		$notes = $this->getDoctrine()->getRepository(Notes::class)->findAll();
 		return $this->render('display.html.twig', [
-			'data' => $data,
+			'data' => $notes,
 		]);
 	}
 
@@ -43,6 +43,6 @@ class NotesController extends AbstractController
 		$entityManager->persist($note);
 		$entityManager->flush();
 		
-		return $this->render('create.html.twig');
+		return $this->redirectToRoute('display');
 	}
 }
