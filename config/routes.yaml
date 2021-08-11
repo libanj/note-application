@@ -13,3 +13,15 @@ create:
 save:
   path: /save
   controller: App\Controller\NotesController::saveNote
+
+edit:
+  path: /edit/{id}
+  controller: App\Controller\NotesController::edit
+
+update:
+  path: /update
+  controller: App\Controller\NotesController::update
+
+delete:
+  path: /delete
+  controller: App\Controller\NotesController::delete

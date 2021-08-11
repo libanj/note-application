@@ -45,4 +45,46 @@ class NotesController extends AbstractController
 		
 		return $this->redirectToRoute('display');
 	}
+
+	public function edit(Request $req): Response
+	{
+		$id = $req->attributes->get('id');
+
+		$entityManager = $this->getDoctrine()->getManager();
+		$note = $entityManager->getRepository(Notes::class)->find($id);
+
+		return $this->render('update.html.twig', [
+			'data' => $note
+		]);
+	}
+
+	public function update(Request $req): Response
+	{
+		$id = $req->request->get('id');
+
+		$entityManager = $this->getDoctrine()->getManager();
+		$note = $entityManager->getRepository(Notes::class)->find($id);
+
+		$title = $req->request->get('title');
+		$body = $req->request->get('body');
+
+		$note->setTitle($title);
+		$note->setBody($body);
+
+		$entityManager->flush();
+		return $this->redirectToRoute('display');
+	}
+
+	public function delete(Request $req): Response
+	{
+		$id = $req->request->get('id');
+
+		$entityManager = $this->getDoctrine()->getManager();
+		$note = $entityManager->getRepository(Notes::class)->find($id);
+
+		$entityManager->remove($note);
+		$entityManager->flush();
+	
+		return $this->redirectToRoute('display');
+	}
 }
